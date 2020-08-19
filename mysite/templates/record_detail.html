@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% load staticfiles %} {% block head %} {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Bing Result Detail</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-20">
+        <div class="panel-body">
+            <div id="batch_dt">
+                <div id="batch_loading" class="collapse text-center">
+                    <span class="fa fa fa-spinner fa-pulse fa-3x fa-fw"></span>
+                </div>
+                <table
+                    id="report_list"
+                    class="table table-bordered table-striped"
+                >
+                    <tbody>
+                        <tr>
+                            <td class="col-sm-2">
+                                <label><b>Unique ID : </b></label>
+                                <span> {{result_set.uid }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">
+                                <label><b>URL ID : </b></label>
+                                <span>{{ result_set.url_id }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">
+                                <label><b>Search Keyword : </b></label>
+                                <span>{{ result_set.keyword }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">
+                                <label><b>Url : </b></label>
+                                <span
+                                    ><a href="{{ result_set.url }}">
+                                        {{ result_set.url }}</a
+                                    ></span
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">
+                                <label><b>Result Name : </b></label>
+                                <span>{{ result_set.name }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">
+                                <label><b>Snippet : </b></label>
+                                <span>{{ result_set.snippet }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">
+                                <label><b>Crawled Date : </b></label>
+                                <span>{{ result_set.crawled_date }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">
+                                <label><b>Created Date : </b></label>
+                                <span>{{ result_set.created_at }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block scripts %} {% endblock %}

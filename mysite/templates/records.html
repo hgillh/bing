@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% load staticfiles %} {% block head %}
+<style>
+    #csv_div {
+        width: 1px;
+        margin-right: 180px;
+    }
+</style>
+{% endblock %} {% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Bing Results</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div id="batch_dt">
+                    <table
+                        id="report_list"
+                        class="table table-bordered table-striped"
+                    >
+                        <thead>
+                            <tr>
+                                <th class="col-sm-2">ID</th>
+                                <th class="col-sm-2">URL</th>
+                                <th class="col-sm-2">Keyword</th>
+                                <th class="col-sm-2">Name</th>
+                                <th class="col-sm-2">Crawl Date</th>
+                                <th class="col-sm-2">Details</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for d in data_list %}
+                            <tr>
+                                <td class="col-sm-2">
+                                    {{ d.uid }}
+                                </td>
+                                <td class="col-sm-2">
+                                    <span
+                                        ><a href="{{ d.url }}" target="_blank">
+                                            {{ d.url }}</a
+                                        ></span
+                                    >
+                                </td>
+                                <td class="col-sm-2">
+                                    {{ d.keyword }}
+                                </td>
+                                <td class="col-sm-2">
+                                    {{ d.name }}
+                                </td>
+                                <td class="col-sm-2">
+                                    {{ d.crawled_date }}
+                                </td>
+                                <td class="col-sm-2">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary"
+                                    >
+                                        <a
+                                            target="_blank"
+                                            style="color: white !important;"
+                                            href="/bing/detail/?uid={{ d.uid }}"
+                                            >View</a
+                                        >
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+    $(function () {
+        $("#report_list").DataTable({
+            pageLength: 100,
+            bPaginate: true,
+            searching: true,
+            bInfo: true,
+        });
+    });
+</script>
+
+{% endblock %}
