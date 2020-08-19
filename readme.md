@@ -1,36 +1,31 @@
-# Bing Search using Django & DynamoDB
+# Bing Search (POC)
 
-## Django + DynamoDB + Bing Search
+###### Bing search is a POC developed wityh Python 3.8, Django, DynamoDB, Big Web Search API and Docker
+
+## Instructions to Setup and Run
 
 ---
 
-## To install requirements
+#### Clone the repo on your local system
 
 ```python
-# setup dynamodb- Follow tutorial
-https://garywoodfine.com/how-to-install-dynamodb-on-local-ubuntu-development/
-
-# create a virtual environment of python3.6
-python3 -m venv bingenv
-
-# install requirements txt
-pip3 install -r requirements.txt
+git clone https://github.com/hgillh/bing.git
 ```
 
-## to run project
+#### Setup containers and run
 
 ```python
-# activate virtual env
-source bingenv/bin/activate
-
-# to run project
-python3 manage.py runserver
+cd <project_folder>
+docker-compose up --build
 ```
 
-## UIs
+###### It will configure the DynmoDB container and an Ubuntu 20.04 container. On Ubuntu 20.04, it will configure Django project and start it on port: 8080.
 
-```bash
-- Bing Search
-- Results List
-- Detail Single Record
-```
+## Other Details
+
+-   It will start DynamoDB on port 8000 with default settings
+    -- It will presist the DynamoDB data on restart of container. Used Docker volume for the same
+    --More detials at : https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
+-   It is using Bing Web Search API to fetch bing search results.
+    --It is using Bing sandbox API key, which will expire after a week
+    --https://docs.microsoft.com/en-us/azure/cognitive-services/bing-web-search/
